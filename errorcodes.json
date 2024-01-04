@@ -1,0 +1,130 @@
+[
+  {
+    "key": "success",
+    "content": {
+      "code": "200?00",
+      "title": "",
+      "message": "Successful"
+    }
+  },
+  {
+    "key": "inProgress",
+    "content": {
+      "code": "202?00",
+      "title": "",
+      "message": "Request In Progress"
+    }
+  },
+  {
+    "key": "badRequest",
+    "content": {
+      "code": "400?00",
+      "title": "",
+      "message": "Bad Request"
+    }
+  },
+  {
+    "key": "invalidFormat",
+    "content": {
+      "code": "400?01",
+      "title": "",
+      "message": "Invalid Field Format {field name}"
+    }
+  },
+  {
+    "key": "mandatory",
+    "content": {
+      "code": "400?02",
+      "title": "",
+      "message": "Invalid Mandatory Field {field name}"
+    }
+  },
+  {
+    "key": "unauthorized",
+    "content": {
+      "code": "401?00",
+      "title": "",
+      "message": "Unauthorized. [reason]"
+    }
+  },
+  {
+    "key": "invalidToken",
+    "content": {
+      "code": "401?01",
+      "title": "",
+      "message": "Invalid Token"
+    }
+  },
+  {
+    "key": "invalidCustomerToken",
+    "content": {
+      "code": "401?02",
+      "title": "",
+      "message": "Invalid Customer Token"
+    }
+  },
+  {
+    "key": "expired",
+    "content": {
+      "code": "403?00",
+      "title": "",
+      "message": "Transaction Expired"
+    }
+  },
+  {
+    "key": "invalidMerchant",
+    "content": {
+      "code": "404?08",
+      "title": "",
+      "message": "Invalid Merchant"
+    }
+  },
+  {
+    "key": "invalidAmount",
+    "content": {
+      "code": "404?13",
+      "title": "",
+      "message": "Invalid Amount"
+    }
+  },
+  {
+    "key": "invalidVA",
+    "content": {
+      "code": "404?19",
+      "title": "",
+      "message": "Invalid Bill/Virtual Account"
+    }
+  },
+  {
+    "key": "conflict",
+    "content": {
+      "code": "409?00",
+      "title": "",
+      "message": "Conflict"
+    }
+  },
+  {
+    "key": "duplicatePartnerRefNo",
+    "content": {
+      "code": "409?01",
+      "title": "",
+      "message": "Duplicate partnerReferenceNo"
+    }
+  },
+  {
+    "key": "toManyRequest",
+    "content": {
+      "code": "429?00",
+      "title": "",
+      "message": "Too Many Requests"
+    }
+  },
+  {
+    "key": "general",
+    "content": {
+      "code": "500?00",
+      "title": "",
+      "message": "General Error"
+    }
+  }
+]

@@ -1,0 +1,11 @@
+version: '3'
+services:
+  api:
+    build: .
+    volumes:
+      - .:/app
+    image: skeleton-svc:latest
+    ports:
+      - "7878:7878"
+    env_file:
+      - ./.env

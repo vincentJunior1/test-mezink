@@ -1,0 +1,202 @@
+ignore:
+  - .git/
+  - transformations.yml
+  - cmd/
+  - logs/
+  - skeleton-svc
+  - skeleton-svc-2022-11-09-10-30-27.html
+  - dev.env
+  - start.sh
+  - databases/postgre/migrations/
+inputs:
+  - id: name
+    text: What is the project name? (e.g. my-awesome-go-project)
+    type: text
+  - id: include_database
+    text: Should database database functionality be included?
+    type: yesno
+  - id: include_postgres
+    text: Should postgres database functionality be included?
+    type: yesno
+  - id: include_mysql
+    text: Should mysql database functionality be included?
+    type: yesno
+  - id: include_redis
+    text: Should redis standalone functionality be included?
+    type: yesno
+  - id: include_redis_cluster
+    text: Should redis cluster functionality be included?
+    type: yesno
+  - id: include_kafka
+    text: Should kafka functionality be included?
+    type: yesno
+  - id: include_minio
+    text: Should minio functionality be included?
+    type: yesno
+  - id: include_cassandra
+    text: Should cassandra functionality be included?
+    type: yesno
+  - id: include_host
+    text: Should host sample functionality be included?
+    type: yesno
+  - id: include_grpc
+    text: Should grpc sample functionality be included?
+    type: yesno
+  - id: include_scheduler
+    text: Should scheduler sample functionality be included?
+    type: yesno
+  - id: include_2version
+    text: Should 2version sample functionality be included?
+    type: yesno
+  - id: include_template
+    text: Should template sample functionality be included?
+    type: yesno
+before:
+  operations:
+    - sh:
+      - rm -rf {{.destination}}
+transformations:
+  - name: project name
+    type: replace
+    pattern: skeleton-svc
+    replacement: "{{ .name }}"
+    files: ["*.go", "**/*.go", "**/**/*.go", ".gitignore", "README.MD", "deployments/msp-env.json", "*.env", "Dockerfile", "docker-compose.yaml", "go.mod", "go.sum", "LICENSE", "start.sh", "*.env"]
+  - name: include database - whole files
+    type: include
+    region_marker:
+    condition: .include_database
+    files: ["databases/**"]
+  - name: include database - parts of files
+    type: include
+    region_marker: __INCLUDE_DATABASE__
+    condition: .include_database
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include postgres - whole files
+    type: include
+    region_marker:
+    condition: .include_postgres
+    files: ["databases/postgre/**"]
+  - name: include postgres - parts of files
+    type: include
+    region_marker: __INCLUDE_POSTGRES__
+    condition: .include_postgres
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include mysql - whole files
+    type: include
+    region_marker:
+    condition: .include_mysql
+    files: ["databases/mysql/**"]
+  - name: include mysql - parts of files
+    type: include
+    region_marker: __INCLUDE_MYSQL__
+    condition: .include_mysql
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include redis - whole files
+    type: include
+    region_marker:
+    condition: .include_redis
+    files: ["databases/redis/**"]
+  - name: include redis - parts of files
+    type: include
+    region_marker: __INCLUDE_REDIS__
+    condition: .include_redis
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include redis cluster - whole files
+    type: include
+    region_marker:
+    condition: .include_redis_cluster
+    files: ["databases/redis_cluster/**"]
+  - name: include redis cluster - parts of files
+    type: include
+    region_marker: __INCLUDE_REDISCLUSTER__
+    condition: .include_redis_cluster
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include kafka - whole files
+    type: include
+    region_marker:
+    condition: .include_kafka
+    files: ["databases/kafka/**", "worker/**"]
+  - name: include kafka - parts of files
+    type: include
+    region_marker: __INCLUDE_KAFKA__
+    condition: .include_kafka
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include minio - whole files
+    type: include
+    region_marker:
+    condition: .include_minio
+    files: ["databases/minio/**"]
+  - name: include minio - parts of files
+    type: include
+    region_marker: __INCLUDE_MINIO__
+    condition: .include_minio
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include cassandra - whole files
+    type: include
+    region_marker:
+    condition: .include_cassandra
+    files: ["databases/cassandra/**"]
+  - name: include cassandra - parts of files
+    type: include
+    region_marker: __INCLUDE_CASSANDRA__
+    condition: .include_cassandra
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include grpc - whole files
+    type: include
+    region_marker:
+    condition: .include_grpc
+    files: ["databases/grpc/**", "hosts/rpc/**", "grpc/**"]
+  - name: include grpc - parts of files
+    type: include
+    region_marker: __INCLUDE_GRPC__
+    condition: .include_grpc
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include host - whole files
+    type: include
+    region_marker:
+    condition: .include_host
+    files: ["hosts/**"]
+  - name: include host - parts of files
+    type: include
+    region_marker: __INCLUDE_HOST__
+    condition: .include_host
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include scheduler - whole files
+    type: include
+    region_marker:
+    condition: .include_scheduler
+    files: ["scheduler/**"]
+  - name: include scheduler - parts of files
+    type: include
+    region_marker: __INCLUDE_SCHEDULER__
+    condition: .include_scheduler
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include 2version - whole files
+    type: include
+    region_marker:
+    condition: .include_2version
+    files: ["usecases/v2/**", "controllers/v2/**"]
+  - name: include 2version - parts of files
+    type: include
+    region_marker: __INCLUDE_2VERSION__
+    condition: .include_2version
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: include template - whole files
+    type: include
+    region_marker:
+    condition: .include_template
+    files: ["**/**/example.*", "example.*", "**/example.*"]
+  - name: include template - parts of files
+    type: include
+    region_marker: __INCLUDE_TEMPLATE__
+    condition: .include_template
+    files: ["*.go", "**/*.go", "**/**/*.go", "*.env"]
+  - name: do not include template code in the final output
+    type: include
+    region_marker: 
+    condition: false
+    files: ["mocks/**", "**/mocks/**", "**/**/mocks/**", "**/*test.go", "**/**/*test.go"]
+after:
+  operations:
+    - sh:
+      - cd {{.destination}} && go mod tidy
